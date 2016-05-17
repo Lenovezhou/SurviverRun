@@ -3,14 +3,15 @@ using System.Collections;
 
 public class FirstSceneButton : MonoBehaviour {
 
-	public StartSceneUimanager uimanager;
 
+	public SelectLevelPanel selectlevelpanel;
 	void Start () {
 	
 	}
 	public void FistScene()
 	{
-		uimanager.SelectScene (SelectScenes.First);
+		selectlevelpanel.startsceneuimanager.SelectScene(SelectScenes.First);
+	
 	}
 
 	void Update () {

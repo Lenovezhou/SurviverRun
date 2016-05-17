@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ThirdSceneButton : MonoBehaviour {
 
-	public StartSceneUimanager uimanager;
+	public SelectLevelPanel selectlevelpanel;
 	void Start () {
 	
 	}
@@ -11,7 +11,7 @@ public class ThirdSceneButton : MonoBehaviour {
 
 	public void ThirdScene()
 	{
-		uimanager.SelectScene (SelectScenes.First);
+		selectlevelpanel.startsceneuimanager.SelectScene(SelectScenes.First);
 	}
 
 	void Update () {

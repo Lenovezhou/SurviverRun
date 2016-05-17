@@ -3,14 +3,14 @@ using System.Collections;
 
 public class SecondSceneButton : MonoBehaviour {
 
-	public StartSceneUimanager uimanager;
+	public SelectLevelPanel selectlevelpanel;
 	void Start () {
 	
 	}
 	
 	public void SecondScene()
 	{
-		uimanager.SelectScene (SelectScenes.First);
+		selectlevelpanel.startsceneuimanager.SelectScene(SelectScenes.First);
 	}
 
 	void Update () {

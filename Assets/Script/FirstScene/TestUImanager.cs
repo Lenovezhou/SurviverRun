@@ -31,6 +31,7 @@ public class TestUImanager : MonoBehaviour {
 		case UITYPE.HomePanel:
 			OpenPanelObj (hometest1.gameObject);
 			Application.LoadLevel ("SurviverRunStartPage");
+//			gamemanager.startsceneuimanager.StartPanelControll (StartPanelState.logopanel);
 			break;
 		case UITYPE.NormalPanel:
 			OpenPanelObj (normaltest2.gameObject);

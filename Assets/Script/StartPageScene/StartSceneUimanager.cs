@@ -8,17 +8,23 @@ public enum SelectScenes
 	Second,
 	Third
 }
+public enum StartPanelState
+{
+	logopanel,
+	selectpanel
+}
 
 public class StartSceneUimanager : MonoBehaviour {
 
-	public FirstSceneButton firstbutton;
-	public SecondSceneButton secondbutton;
-	public ThirdSceneButton thirdbutton;
+	public LogoPanel logopanel;
+	public SelectLevelPanel selectlevelpanel;
 	public TestUImanager testuimanager;
+	StartPanelState startpanelstate;
 	void Start () {
-		firstbutton.uimanager = this;
-		secondbutton.uimanager = this;
-		thirdbutton.uimanager = this;
+
+		logopanel.startsceneuimanager = this;
+		selectlevelpanel.startsceneuimanager = this;
+
 	}
 
 
@@ -36,9 +42,31 @@ public class StartSceneUimanager : MonoBehaviour {
 			Application.LoadLevel ("Animator_test3");
 			break;
 		}
-//		gameObject.SetActive (false);
+
 
 	}
+	public void StartPanelControll(StartPanelState startpanelstate)
+	{
+//		SelectPanelChoose ();
+		switch(startpanelstate)
+		{
+		case StartPanelState.logopanel:
+			logopanel.gameObject.SetActive (true);
+			selectlevelpanel.gameObject.SetActive (false);
+			break;
+		case StartPanelState.selectpanel:
+			logopanel.gameObject.SetActive (false);
+			selectlevelpanel.gameObject.SetActive (true);
+			break;
+		}
+
+	}
+
+//	public void SelectPanelChoose()
+//	{
+//		startpanelstate = startpanelstate == StartPanelState.logopanel ? StartPanelState.selectpanel : StartPanelState.logopanel;
+//	}
+
 
 	void Update () {
 	

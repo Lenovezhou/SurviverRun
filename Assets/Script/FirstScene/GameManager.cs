@@ -6,7 +6,7 @@ public enum pausestate{
 	unpause
 }
 public class GameManager : MonoBehaviour {
-
+	public StartSceneUimanager startsceneuimanager;
 	public CubeControll cubemanager;
 	public TestUImanager uimanager;
 	public Text ScoreText;
@@ -23,9 +23,12 @@ public class GameManager : MonoBehaviour {
 	int Score;
 
 	void Start () {
+		mariorbin.isKinematic = false;
+		ScoreText.text = "Score:0";
 		HomePage ();
 		currentvelocity = mariorbin.velocity;
 		uimanager.gamemanager = this;
+		startsceneuimanager = GetComponent<StartSceneUimanager> ();
 	}
 	//	主页
 	public void HomePage(){
@@ -61,6 +64,7 @@ public class GameManager : MonoBehaviour {
 	//	首次开始游戏
 	public void StartGame()
 	{
+		Restartgame ();
 		playerMove.pj = playerjump.run;
 		mariorbin.isKinematic = false;
 //		SetAnimator ("Start");

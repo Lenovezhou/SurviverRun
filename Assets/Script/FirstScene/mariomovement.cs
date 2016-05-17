@@ -14,7 +14,7 @@ public class mariomovement : MonoBehaviour {
 	public Vector3 forwardv, upv,downv;
 	Rigidbody _rb;
 	Vector3 SpereSpped;
-	float forwardforce=5f,Deathdeep=-5;
+	float forwardforce=5f,Deathdeep=-10;
 	public float Firsttime,Seconedtime;
 	float timer1=0f,timer2=0f;
 	Vector3 vv = new Vector3 (0f, 5f, 0f);
@@ -61,7 +61,7 @@ public class mariomovement : MonoBehaviour {
 	//	判断Mario是否落入底层
 	void isOver(){
 		if (transform.position.y<Deathdeep) {
-//			gamemanager.Dead ();
+			gamemanager.Dead ();
 		}
 	}
 
