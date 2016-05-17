@@ -39,7 +39,7 @@ public class InputManager : MonoBehaviour {
 			{
 				mariomm.FirstJumpUp ();
 			}
-			if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began)
+			if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began||Input.GetTouch(0).phase==TouchPhase.Moved)
 			{
 				if (Input.GetTouch (0).position.x < Screen.width * 0.5f || Input.mousePosition.x < Screen.width*0.5f)
 				{
