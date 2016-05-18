@@ -27,6 +27,27 @@ public class InputManager : MonoBehaviour {
 			//	mariochange.ChangColor ();
 			}	
 			//--------------Touch
+			#if UNITY_EDITOR || UNITY_IOS
+			if (!EventSystem.current.IsPointerOverGameObject())
+			{
+				if (Input.GetMouseButtonDown (0)) {
+					if(Input.mousePosition.x >= Screen.width*0.5f)
+					{
+						mariomm.RigidbodyMove ();
+					}
+				}
+				if (Input.GetMouseButtonUp (0)) {
+					mariomm.FirstJumpUp ();
+				}
+				if (Input.GetMouseButtonDown (0)) {
+					if(Input.mousePosition.x < Screen.width*0.5f)
+					{
+						mariochange.ChangColor ();
+					}
+				}
+			}
+
+			#elif UNITY_IOS
 			if ((Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Moved))
 			{
 				if (Input.GetTouch (0).position.x >= Screen.width * 0.5f || Input.mousePosition.x >= Screen.width*0.5f)
@@ -47,30 +68,14 @@ public class InputManager : MonoBehaviour {
 				}
 			}
 
+
+			#endif
+
 			//----------------MouseButton
 			//解决按住后与地面接触直接进行二段跳
 //			if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
 //				#else
-			if (EventSystem.current.IsPointerOverGameObject())
-			{
-				
-			}else {
-				if (Input.GetMouseButtonDown (0)) {
-					if(Input.mousePosition.x >= Screen.width*0.5f)
-					{
-						mariomm.RigidbodyMove ();
-					}
-				}
-				if (Input.GetMouseButtonUp (0)) {
-					mariomm.FirstJumpUp ();
-				}
-				if (Input.GetMouseButtonDown (0)) {
-					if(Input.mousePosition.x < Screen.width*0.5f)
-					{
-						mariochange.ChangColor ();
-					}
-				}
-			}
+
 
 
 		}
@@ -81,9 +86,9 @@ public class InputManager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Q)) {
 			Application.LoadLevel (Application.loadedLevel);
 		}
-		if (Input.GetKeyDown(KeyCode.R)) {
-			gamemana.Restartgame ();
-		}
+//		if (Input.GetKeyDown(KeyCode.R)) {
+//			gamemana.Restartgame ();
+//		}
 
 //		if ((Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Moved)) {
 //			Debug.Log (Input.GetTouch (0).position);

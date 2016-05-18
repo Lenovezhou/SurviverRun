@@ -6,7 +6,8 @@ public enum UITYPE
 {
 	HomePanel,
 	NormalPanel,
-	PausePanel
+	PausePanel,
+	gamecomplete
 }
 
 public class TestUImanager : MonoBehaviour {
@@ -15,9 +16,11 @@ public class TestUImanager : MonoBehaviour {
 	public TestHomePanel hometest1;
 	public TestNormalPanel normaltest2;
 	public TestPauseGamePanel pausetest3;
+	public GameCompletePanel gamecompeletepanel;
 
 	GameObject oldpanel;
 	void Start () {
+		gamecompeletepanel.testuimanager = this;
 		hometest1.uimanager = this;
 		normaltest2.uimanager = this;
 		pausetest3.uimanager = this;
@@ -39,7 +42,9 @@ public class TestUImanager : MonoBehaviour {
 		case UITYPE.PausePanel:
 			OpenPanelObj (pausetest3.gameObject);
 			break;
-
+		case UITYPE.gamecomplete:
+			OpenPanelObj (gamecompeletepanel.gameObject);
+			break;
 		}
 
 	}

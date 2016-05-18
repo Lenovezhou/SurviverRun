@@ -10,13 +10,14 @@ public class TestPauseGamePanel : MonoBehaviour {
 	public void RetrunGame()
 	{
 		uimanager.OpenPanel (UITYPE.NormalPanel);
-		uimanager.gamemanager.StartGame ();
+		uimanager.gamemanager.StartGame();
 		
 	}
+
 	public void BackHome()
 	{
 		uimanager.OpenPanel (UITYPE.HomePanel);
-		uimanager.gamemanager.HomePage ();
+		uimanager.gamemanager.StartGame();
 	}
 
 	void Update () {

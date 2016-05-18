@@ -132,7 +132,7 @@ public class mariomovement : MonoBehaviour {
 
 	public void AnimatorChange(string name)
 	{
-		marioanim.SetBool (animatorname,false);
+//		marioanim.SetBool (animatorname,false);
 		marioanim.SetBool (name,true);
 		animatorname = name;
 	}

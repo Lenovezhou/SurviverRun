@@ -7,15 +7,18 @@ public enum mariocolor{
 public class marioChangeColor : MonoBehaviour {
 	public Material marioMaterialRed,marioMaterialYellow;
 	public mariocolor mc;
-	SkinnedMeshRenderer marioskin;
+	public SkinnedMeshRenderer marioskin;
 	public bool ischange=false;
 	void Start () {
 		GameObject m001 =GameObject.Find ("mario001");
 		marioskin =m001.GetComponent<SkinnedMeshRenderer> ();
+		ResetColor ();
+	}
+	public void ResetColor()
+	{
 		mc = mariocolor.red;
 		marioskin.material = marioMaterialRed;
 	}
-	
 
 	void Update () {
 

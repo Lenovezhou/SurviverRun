@@ -25,12 +25,22 @@ public class StartSceneUimanager : MonoBehaviour {
 		logopanel.startsceneuimanager = this;
 		selectlevelpanel.startsceneuimanager = this;
 
+		if (Global.startPanelState == StartPanelState.logopanel) {
+			
+		}
+		else if(Global.startPanelState == StartPanelState.selectpanel)
+		{
+			
+		}
+
+
+
 	}
 
 
 	public void SelectScene(SelectScenes selectscenes)
 	{
-		switch(selectscenes)
+		switch(selectscenes )
 		{
 		case SelectScenes.First:
 			Application.LoadLevel ("Animator_test");

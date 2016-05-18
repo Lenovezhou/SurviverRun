@@ -47,10 +47,10 @@ public class CubeControll : MonoBehaviour {
 	void OnCollisionEnter(Collision other){
 		gamemanager.playerMove.SetJumpOver ();
 		gamemanager.playerMove.MarioAnimator (playerjump.run);
-		if (CubeColor ==changecolor.mc&& !iscolision ) {
+		if (CubeColor ==changecolor.mc ) {
 //				return;
 			marioScore.AddScore (ScoreValue);
-			iscolision = true;
+//			iscolision = true;
 		} else if(CubeColor !=changecolor.mc){
 			gamemanager.Dead ();
 //			Debug.Log ("if");
