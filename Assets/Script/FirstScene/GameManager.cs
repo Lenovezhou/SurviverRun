@@ -6,49 +6,41 @@ public enum pausestate{
 	unpause
 }
 public class GameManager : MonoBehaviour {
+	public AudioManager audiomanager;
+	public CollisionManager collisionmanager;
 	public StartSceneUimanager startsceneuimanager;
 	public CubeControll cubemanager;
+	public PlayerManager playermanager;
 	public TestUImanager uimanager;
-	public Text ScoreText;
-	public Animator GameOveranim;
-//	public mariomovement mariomove;
-	public marioChangeColor mmcc;
-	public Rigidbody mariorbin;
-	public mariomovement playerMove;
 	public Vector3 mariomaxvelocity;
 	Vector3 currentvelocity;
 	public pausestate state=pausestate.pause;
 	bool isDead;
-	public string A;
-	int Score;
 
 	void Start () {
-		mariorbin.isKinematic = false;
-		ScoreText.text = "Score:0";
+
+		playermanager.mariomovement.SetForIsKinematic (false);
+		//		ScoreText.text = "Score:0";
 		StartGame ();
-		currentvelocity = mariorbin.velocity;
-		uimanager.gamemanager = this;
+		currentvelocity = playermanager.mariomovement.rigidbody.velocity;
 		startsceneuimanager = GetComponent<StartSceneUimanager> ();
 	}
-	//	主页
-//	public void HomePage(){
-//		Restartgame ();
-////		SetAnimator("Wait");
-//	} 
-	
-//	public void Restartgame()
-//	{
-//		//	依然会有力
-//		playerMove.Reset();
-//		playerMove.MarioAnimator (playerjump.run);
-////		mariorbin.transform.position = Vector3.zero;
-//	}
+
+
+	//	播放音乐
+		
+//		public void PlayMusic(AudioClip clip)
+//		{
+//		audiomanager.audiosource.Play ();
+//		}
+
+
 	//	暂停游戏
 	public void PauseGame()
 	{
 		if (state == pausestate.unpause&&!isDead) 
 		{
-			mariorbin.isKinematic = true;
+			playermanager.mariomovement.SetForIsKinematic (true);
 //			SetAnimator ("Pause");
 			state = pausestate.pause;
 		}
@@ -57,54 +49,65 @@ public class GameManager : MonoBehaviour {
 	//	首次开始游戏
 	public void StartGame()
 	{
-		mmcc.ResetColor ();
-		Score = 0;
-		ScoreText.text = "Score:"+Score;
+		uimanager.normaltest2.ResetST ();						//	重置时间和分数
+		playermanager.mariochangecolor.ResetColor ();
+//		AddScore (0);
 		isDead = false;
-		playerMove.Reset();
-		playerMove.pj = playerjump.run;
-		mariorbin.isKinematic = false;
+		playermanager.mariomovement.Reset();
+		playermanager.mariomovement.pj = playerjump.run;
+		playermanager.mariomovement.SetForIsKinematic (false);
 //		SetAnimator ("Start");
 		state = pausestate.unpause;
 	}
 	public void ContinueGame()
 	{
-		mariorbin.isKinematic = false;
+		playermanager.mariomovement.SetForIsKinematic (false);
 		state = pausestate.unpause;
 	}
 
-	//	加分
-	public void AddScore(int newvalue){
-		Score+=newvalue;
-		ScoreText.text = "Score:" + Score;
-	}
+
 
 	//	游戏结束
 	public void Dead(){
-		
 		isDead = true;
-
 		StartGame ();
-//		playerMove.enabled = false;
-//		mmcc.enabled = false;
-//		playerMove.SetForRun (false); 
+
 	}
+
+
+	//	完成游戏
 	public void CompleteGame()
 	{
-		
+		uimanager.OpenPanel (UITYPE.gamecomplete);
 	}
 
+
+	//	加分
+	public void AddScore(int newvalue){
+		uimanager.normaltest2.score += newvalue;
+	}
+
+	//	时间
+	public void Addtime()
+	{
+		uimanager.normaltest2.timer += Time.time;
+	
+	}
+
+
+
 	void Update () {
-		
+
+
+		//	时间
+		if (state!=pausestate.pause) {
+			Addtime ();
+		}
+
 		//	限制速度
+		playermanager.mariomovement.SetForRun( playermanager.mariomovement.rigidbody.velocity.z<mariomaxvelocity.z);
 
-		playerMove.SetForRun(mariorbin.velocity.z<mariomaxvelocity.z);
 
-//		if (mariorbin.velocity.z > mariomaxvelocity.z) {
-//			playerMove.SetForRun (false);
-//		} else {
-//			playerMove.SetForRun (true);
-//		}
 			
 		 }
 

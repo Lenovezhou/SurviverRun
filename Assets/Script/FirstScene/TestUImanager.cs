@@ -12,12 +12,13 @@ public enum UITYPE
 
 public class TestUImanager : MonoBehaviour {
 
+	public AudioManager audiomanager;
 	public GameManager gamemanager;
 	public TestHomePanel hometest1;
 	public TestNormalPanel normaltest2;
 	public TestPauseGamePanel pausetest3;
 	public GameCompletePanel gamecompeletepanel;
-
+	public Text scoretext,timetext;
 	GameObject oldpanel;
 	void Start () {
 		gamecompeletepanel.testuimanager = this;

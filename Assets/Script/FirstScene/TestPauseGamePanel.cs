@@ -11,13 +11,14 @@ public class TestPauseGamePanel : MonoBehaviour {
 	{
 		uimanager.OpenPanel (UITYPE.NormalPanel);
 		uimanager.gamemanager.StartGame();
-		
+		uimanager.audiomanager.PlayMusic ();
 	}
 
 	public void BackHome()
 	{
 		uimanager.OpenPanel (UITYPE.HomePanel);
 		uimanager.gamemanager.StartGame();
+		uimanager.audiomanager.PlayMusic ();
 	}
 
 	void Update () {

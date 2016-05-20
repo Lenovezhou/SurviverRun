@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour {
-	public marioChangeColor mariochange;
+//	public marioChangeColor mariochange;
 	public mariomovement mariomm;
-	public GameManager gamemana;
+	public GameManager gamemanager;
 	pausestate puse;
 	void Start () {
 	
@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour {
 	
 	public float speed = 0.1F;
 	void Update() {
-		if (gamemana.state==pausestate.unpause) {
+		if (gamemanager.state==pausestate.unpause) {
 			//------------Button
 			if (Input.GetButton ("Jump"))
 			{
@@ -28,8 +28,10 @@ public class InputManager : MonoBehaviour {
 			}	
 			//--------------Touch
 			#if UNITY_EDITOR || UNITY_IOS
+			//	bool IsPonterOverGameObject();检查是否点击clisked on 在UI上
 			if (!EventSystem.current.IsPointerOverGameObject())
 			{
+				
 				if (Input.GetMouseButtonDown (0)) {
 					if(Input.mousePosition.x >= Screen.width*0.5f)
 					{
@@ -42,7 +44,7 @@ public class InputManager : MonoBehaviour {
 				if (Input.GetMouseButtonDown (0)) {
 					if(Input.mousePosition.x < Screen.width*0.5f)
 					{
-						mariochange.ChangColor ();
+						gamemanager.playermanager.mariochangecolor.ChangeColor ();
 					}
 				}
 			}
@@ -81,7 +83,7 @@ public class InputManager : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.Escape)) {
-			gamemana.PauseGame ();
+			gamemanager.PauseGame ();
 		}
 		if (Input.GetKeyDown(KeyCode.Q)) {
 			Application.LoadLevel (Application.loadedLevel);

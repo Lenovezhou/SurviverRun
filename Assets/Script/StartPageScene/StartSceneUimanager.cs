@@ -16,6 +16,7 @@ public enum StartPanelState
 
 public class StartSceneUimanager : MonoBehaviour {
 
+	public AudioManager audiomanager;
 	public LogoPanel logopanel;
 	public SelectLevelPanel selectlevelpanel;
 	public TestUImanager testuimanager;
@@ -46,7 +47,7 @@ public class StartSceneUimanager : MonoBehaviour {
 			Application.LoadLevel ("Animator_test");
 			break;
 		case SelectScenes.Second:
-			Application.LoadLevel ("Animator_test2");
+			Application.LoadLevel ("Animator_test01");
 			break;
 		case SelectScenes.Third:
 			Application.LoadLevel ("Animator_test3");

@@ -5,7 +5,7 @@ public class GameCompletePanel : MonoBehaviour {
 	public  GameComplete gamecomplete;
 	public TestUImanager testuimanager;
 	void Start () {
-		gamecomplete.gamecompletepanel = this;
+//		gamecomplete.gamecompletepanel = this;
 	}
 	
 	public void Complete()

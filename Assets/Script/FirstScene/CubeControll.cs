@@ -3,21 +3,23 @@ using System.Collections;
 
 public class CubeControll : MonoBehaviour {
 
+
+	public CollisionManager collisionmanager;
 	public Material[] CubeMaterial;
-	public mariomovement mariomove;
+//	public mariomovement mariomove;
 	public mariocolor CubeColor;
 	MeshRenderer CubeMaterialset;
-	public marioChangeColor changecolor;
+//	public marioChangeColor changecolor;
 	bool iscolision;
 	public Rigidbody Formariorb;
 	public GameManager marioScore;
-	public GameManager gamemanager;
+//	public GameManager gamemanager;
 
 	int ScoreValue=10;
 
 	void Start () {
-		gamemanager.cubemanager = this;
-		changecolor.mc = mariocolor.red;
+//		gamemanager.cubemanager = this;
+//		changecolor.mc = mariocolor.red;
 		CubeColor = mariocolor.red;
 		CubeMaterialset = GetComponent<MeshRenderer> ();
 
@@ -45,14 +47,14 @@ public class CubeControll : MonoBehaviour {
 //	}
 	//	判定碰撞的物体Mario的颜色是否与Cube相同，且标记碰撞次数
 	void OnCollisionEnter(Collision other){
-		gamemanager.playerMove.SetJumpOver ();
-		gamemanager.playerMove.MarioAnimator (playerjump.run);
-		if (CubeColor ==changecolor.mc ) {
+		collisionmanager.gamemanager.playermanager.mariomovement.SetJumpOver ();
+		collisionmanager.gamemanager.playermanager.mariomovement.MarioAnimator (playerjump.run);
+		if (CubeColor ==collisionmanager.gamemanager.playermanager.mariochangecolor.mc ) {
 //				return;
-			marioScore.AddScore (ScoreValue);
+			collisionmanager.gamemanager.AddScore(ScoreValue);
 //			iscolision = true;
-		} else if(CubeColor !=changecolor.mc){
-			gamemanager.Dead ();
+		} else if(CubeColor !=collisionmanager.gamemanager.playermanager.mariochangecolor.mc){
+			collisionmanager.gamemanager.Dead ();
 //			Debug.Log ("if");
 			}	
 	//	摧毁自己
@@ -70,9 +72,9 @@ public class CubeControll : MonoBehaviour {
 	void OnCollisionStay(Collision other)
 	{
 		
-		if (CubeColor != changecolor.mc) 
+		if (CubeColor != collisionmanager.gamemanager.playermanager.mariochangecolor.mc) 
 		{
-			gamemanager.Dead ();
+			collisionmanager.gamemanager.Dead ();
 			Debug.Log ("不相等");
 		} 
 	}
