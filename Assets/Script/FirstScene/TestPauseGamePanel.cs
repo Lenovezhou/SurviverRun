@@ -3,23 +3,26 @@ using System.Collections;
 
 public class TestPauseGamePanel : MonoBehaviour {
 //	public StartSceneUimanager startsceneuimanager;
+
 	public TestUImanager uimanager;
 	void Start () {
+		
 //		startsceneuimanager.testuimanager = this;
 	}
 	public void RetrunGame()
 	{
 		uimanager.OpenPanel (UITYPE.NormalPanel);
-		uimanager.gamemanager.StartGame();
-		uimanager.audiomanager.PlayMusic ();
+		uimanager.gamemanager.ReStartGame();
+		AudioManager.GetInstance ().PlayMusic (1);
+		AudioManager.GetInstance ().PlayBackground ();
 	}
 
 	public void BackHome()
 	{
-		uimanager.OpenPanel (UITYPE.HomePanel);
-		uimanager.gamemanager.StartGame();
-		uimanager.audiomanager.PlayMusic ();
-	}
+		Application.LoadLevel ("SurviverRunStartPage");
+//		uimanager.gamemanager.StartGame();
+		AudioManager.GetInstance ().PlayMusic (6);
+		}
 
 	void Update () {
 	

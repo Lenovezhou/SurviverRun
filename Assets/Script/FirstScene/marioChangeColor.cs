@@ -24,25 +24,29 @@ public class marioChangeColor : MonoBehaviour {
 	public mariocolor mc;
 	public SkinnedMeshRenderer marioskin;
 	public bool ischange=false;
-//	public GameObject Player;
+	public ParticelTest particeltest;
 	void Start () {
-
+		particeltest = GetComponent<ParticelTest> ();
 		GameObject m001 =gameObject.FindInChildren ("mario001");
 		marioskin = Find.FindInChildren (m001, "mario001").GetComponent<SkinnedMeshRenderer> ();;
 //		marioskin =m001.GetComponent<SkinnedMeshRenderer> ();
-		ResetColor ();
+		mc = mariocolor.red;
+		marioskin.material = marioMaterialRed;
 	}
 
-
-
+	//	重置颜色
 	public void ResetColor()
 	{
-		if (marioskin!=null) {
+		if (marioskin!=null&&playermanager!=null) {
 			mc = mariocolor.red;
 			marioskin.material = marioMaterialRed;
+			particeltest.playerparticle.Clear ();
+			particeltest.playerparticle.Play ();
+			particeltest.ChangeParticleColor (Color.red);
 		}
 
 	}
+
 
 	void Update () {
 
@@ -53,13 +57,23 @@ public class marioChangeColor : MonoBehaviour {
 
 			if (mc==mariocolor.yellow) {
 				marioskin.material = marioMaterialYellow;
+				particeltest.ChangeParticleColor (Color.yellow);
 			}else {
 				marioskin.material = marioMaterialRed;
+				particeltest.ChangeParticleColor (Color.red);
 			}
 //			ischange = false;
 
 		} 
 	}
+
+	public void CompareColor(mariocolor color)
+	{
+		if (color!=mc) {
+			playermanager.gamemanager.Dead ();
+		}
+	}
+
 
 	void Selectcolor(){
 		mc = mc == mariocolor.red ? mariocolor.yellow : mariocolor.red;

@@ -12,7 +12,7 @@ public enum UITYPE
 
 public class TestUImanager : MonoBehaviour {
 
-	public AudioManager audiomanager;
+
 	public GameManager gamemanager;
 	public TestHomePanel hometest1;
 	public TestNormalPanel normaltest2;
@@ -21,11 +21,12 @@ public class TestUImanager : MonoBehaviour {
 	public Text scoretext,timetext;
 	GameObject oldpanel;
 	void Start () {
+
 		gamecompeletepanel.testuimanager = this;
 		hometest1.uimanager = this;
 		normaltest2.uimanager = this;
 		pausetest3.uimanager = this;
-		OpenPanelObj (hometest1.gameObject);
+		OpenPanel (UITYPE.NormalPanel);
 	}
 	//	枚举值的应用来使对象调用时可以简化操作且不用又要引用其变量；
 	public void OpenPanel(UITYPE type)
@@ -34,8 +35,6 @@ public class TestUImanager : MonoBehaviour {
 		{
 		case UITYPE.HomePanel:
 			OpenPanelObj (hometest1.gameObject);
-			Application.LoadLevel ("SurviverRunStartPage");
-//			gamemanager.startsceneuimanager.StartPanelControll (StartPanelState.logopanel);
 			break;
 		case UITYPE.NormalPanel:
 			OpenPanelObj (normaltest2.gameObject);

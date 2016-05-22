@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class LoadResDemo : MonoBehaviour {
+	
+	public FistCubeStandOn fistcubestandon;
 	public TestNormalPanel normalpanel;
 	public TestPauseGamePanel pausepanel;
 	public AudioManager audiomanager;
@@ -52,45 +54,30 @@ public class LoadResDemo : MonoBehaviour {
 		GameObject player = Instantiate (playerpreb)as GameObject;
 		gamemanager = gamecontroll.GetComponent<GameManager> ();
 		testuimanager = canvas.GetComponent<TestUImanager> ();
-		testuimanager.audiomanager = audiomanager;
+		fistcubestandon = gamecontroll.GetComponentInChildren<FistCubeStandOn> ();
 
-//		mariochangecolor = player.GetComponent<marioChangeColor> ();
-//		mariomovement = player.GetComponent<mariomovement> ();
 		playermanager = player.GetComponent<PlayerManager> ();
-		collisionmanager = cubefloor.GetComponent<CollisionManager> ();
 
-
-//		audiomanager = gamecontroll.GetComponent<AudioManager> ();
-//		GameObject canvas = GameObject.Find ("Canvas");
-//		startsceneuimanager = canvas.GetComponent<StartSceneUimanager> ();
-//		startsceneuimanager.audiomanager = audiomanager;
-//		GameObject canvas = GameObject.Find ("Canvas");
-//		logopanel = canvas.GetComponentsInChildren<LogoPanel> ();
-//		foreach(LogoPanel logopanels in logopanel)
-//		{
-//			
-//		
-//			if (logopanels.name=="ENTERGamePanel") {
-//				logopanels.audiomanager = audiomanager;
-//			}
-//		}
-
-//		mariochangecolor.Player = player;
-
-
+//		testuimanager.audiomanager = audiomanager;
 		gamemanager.playermanager = playermanager;
-
 		playermanager.gamemanager = gamemanager;
-
+		gamemanager.playermanager.mariomovement.playerRigidbody = player.GetComponent<Rigidbody> ();
+		testuimanager.gamemanager = gamemanager;
 		gamemanager.uimanager = testuimanager;
+
+
+		collisionmanager = cubefloor.GetComponent<CollisionManager> ();
+		collisionmanager.fistcubestandon = fistcubestandon;
 		gamemanager.collisionmanager = collisionmanager;
 		collisionmanager.gamemanager = gamemanager;
+
+
+
+
 //		gamemanager.mmcc = mariochangecolor;
 //		gamemanager.mariorbin = player.GetComponent<Rigidbody> ();
 //		gamemanager.playerMove = mariomovement;
-		gamemanager.playermanager.mariomovement.rigidbody = player.GetComponent<Rigidbody> ();
 
-		testuimanager.gamemanager = gamemanager;
 //		mariomovement.gamemanager = gamemanager;
 
 		inputmanager = gamemanager.GetComponent<InputManager> ();

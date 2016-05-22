@@ -17,6 +17,7 @@ public enum StartPanelState
 public class StartSceneUimanager : MonoBehaviour {
 
 	public AudioManager audiomanager;
+	public GameObject sceneuigameobject;
 	public LogoPanel logopanel;
 	public SelectLevelPanel selectlevelpanel;
 	public TestUImanager testuimanager;
@@ -25,16 +26,6 @@ public class StartSceneUimanager : MonoBehaviour {
 
 		logopanel.startsceneuimanager = this;
 		selectlevelpanel.startsceneuimanager = this;
-
-		if (Global.startPanelState == StartPanelState.logopanel) {
-			
-		}
-		else if(Global.startPanelState == StartPanelState.selectpanel)
-		{
-			
-		}
-
-
 
 	}
 
@@ -58,19 +49,30 @@ public class StartSceneUimanager : MonoBehaviour {
 	}
 	public void StartPanelControll(StartPanelState startpanelstate)
 	{
-//		SelectPanelChoose ();
+		
 		switch(startpanelstate)
 		{
+
 		case StartPanelState.logopanel:
-			logopanel.gameObject.SetActive (true);
-			selectlevelpanel.gameObject.SetActive (false);
+			selectlevelpanel.SelectLevelPanleDown ();
+//			
 			break;
 		case StartPanelState.selectpanel:
-			logopanel.gameObject.SetActive (false);
-			selectlevelpanel.gameObject.SetActive (true);
+			logopanel.LogoPanleDown ();
 			break;
 		}
 
+	}
+	public void SelectPanelChoose(GameObject openobj,GameObject closeobj)
+	{
+		openobj.SetActive (true);
+		closeobj.SetActive (false);
+		if (openobj.name=="ENTERGamePanel") 
+		{
+			logopanel.LogoPanleUP ();
+		}
+		selectlevelpanel.SelectLevelpanleUp ();
+			
 	}
 
 //	public void SelectPanelChoose()

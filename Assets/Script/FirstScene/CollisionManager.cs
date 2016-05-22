@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CollisionManager : MonoBehaviour {
 
+	public FistCubeStandOn fistcubestandon;
 	public GameManager gamemanager;
 	public CubeControll cubecontroll;
 	public GameComplete gamecomplete;
@@ -10,6 +11,7 @@ public class CollisionManager : MonoBehaviour {
 //		cubecontroll = GetComponent<CubeControll> ();
 		cubecontroll.collisionmanager = this;
 		gamecomplete.collisionmanager = this;
+		fistcubestandon.collisionmanager = this;
 	}
 	
 

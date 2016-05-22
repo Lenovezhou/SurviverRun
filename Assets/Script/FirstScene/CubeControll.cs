@@ -47,14 +47,19 @@ public class CubeControll : MonoBehaviour {
 //	}
 	//	判定碰撞的物体Mario的颜色是否与Cube相同，且标记碰撞次数
 	void OnCollisionEnter(Collision other){
+		AudioManager.GetInstance ().PlayMusic (0);
 		collisionmanager.gamemanager.playermanager.mariomovement.SetJumpOver ();
 		collisionmanager.gamemanager.playermanager.mariomovement.MarioAnimator (playerjump.run);
-		if (CubeColor ==collisionmanager.gamemanager.playermanager.mariochangecolor.mc ) {
+//		collisionmanager.gamemanager.playermanager.mariochangecolor.CompareColor (CubeColor);
+
+
+
+				if (CubeColor ==collisionmanager.gamemanager.playermanager.mariochangecolor.mc ) {
 //				return;
 			collisionmanager.gamemanager.AddScore(ScoreValue);
 //			iscolision = true;
 		} else if(CubeColor !=collisionmanager.gamemanager.playermanager.mariochangecolor.mc){
-			collisionmanager.gamemanager.Dead ();
+			collisionmanager.gamemanager.Dead (); 
 //			Debug.Log ("if");
 			}	
 	//	摧毁自己
@@ -74,7 +79,7 @@ public class CubeControll : MonoBehaviour {
 		
 		if (CubeColor != collisionmanager.gamemanager.playermanager.mariochangecolor.mc) 
 		{
-			collisionmanager.gamemanager.Dead ();
+			collisionmanager.gamemanager.Dead (); 
 			Debug.Log ("不相等");
 		} 
 	}

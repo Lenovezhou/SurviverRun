@@ -11,8 +11,9 @@ public class mariomovement : MonoBehaviour {
 
 //	public GameManager gamemanager;
 	public PlayerManager playermanager;
-	public Rigidbody rigidbody;
+	public Rigidbody playerRigidbody;
 	public playerjump pj;
+	public Vector3 maxspped;
 	public Animator marioanim;
 	public Vector3 forwardv, upv,downv;
 	Rigidbody _rb;
@@ -25,9 +26,7 @@ public class mariomovement : MonoBehaviour {
 	private bool isJump_1_over=false;
 	public string animatorname;
 	void Start () {
-		 rigidbody=GetComponent<Rigidbody> ();
-		 playerjump pj=playerjump.run;                                    //赋值后未被使用
-		
+		 playerRigidbody=GetComponent<Rigidbody> ();                 		
 		marioanim = GetComponent<Animator> ();
 		_rb = GetComponent<Rigidbody> ();
 		SpereSpped =transform.forward*forwardforce;
@@ -36,7 +35,7 @@ public class mariomovement : MonoBehaviour {
 	//	设置iskinematic状态
 	public void SetForIsKinematic(bool iskinematicplayer)
 	{
-		rigidbody.isKinematic = iskinematicplayer;
+		playerRigidbody.isKinematic = iskinematicplayer;
 	}
 
 	public void SetForRun(bool a)
@@ -46,7 +45,10 @@ public class mariomovement : MonoBehaviour {
 
 
 	void Update () {
-		
+
+		//	限制速度
+		SetForRun( playerRigidbody.velocity.z<maxspped.z);
+
 		if (playermanager.gamemanager!=null&&playermanager.gamemanager.state==pausestate.unpause) {
 			Run ();
 			isOver ();
@@ -72,7 +74,7 @@ public class mariomovement : MonoBehaviour {
 	//	判断Mario是否落入底层
 	void isOver(){
 		if (transform.position.y<Deathdeep) {
-			playermanager.gamemanager.Dead ();
+			 playermanager.gamemanager.Dead ();
 		}
 	}
 
